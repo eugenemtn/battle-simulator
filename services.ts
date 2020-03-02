@@ -5,8 +5,7 @@ function random(min: number, max: number): number {
 
 function geometricMean(sequence: number[]): number {
     const reduced = sequence.reduce((acc, value) => acc * value);
-    const root = sequence.length;
-    return Math.pow(reduced, 1 / root );
+    return Math.pow(reduced, 1 / sequence.length);
 }
 
-export default { random }
+export default { random, geometricMean }
