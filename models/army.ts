@@ -24,8 +24,13 @@ class Army {
         return this.squads.findIndex(squad => squad.isActive) > -1;
     }
 
-    attack(enemy: Army) {
+    attack(enemy: Army): void {
         const enemySquad = enemy.getTargetSquad(enemy);
+        for (let squad of this.activeSquads) {
+            if (squad.probability > enemySquad.probability) {
+                enemySquad.takeDamage(squad.attack());
+            }
+        }
     }
 
     getTargetSquad(enemy: Army) {
@@ -34,24 +39,24 @@ class Army {
                 return enemy.activeSquads[s.random(0, enemy.activeSquads.length)];
             case 'weakest':
                 let minDamage: number = enemy.activeSquads[0].attack();
-                let weakestIndex: number | null = null;
+                let weakestIndex: number = -1;
                 for (let index in enemy.activeSquads) {
                     if (enemy.activeSquads[index].attack() < minDamage) {
                         minDamage = enemy.activeSquads[index].attack();
                         weakestIndex = +index;
                     }
                 }
-                return enemy.squads[weakestIndex];
+                return weakestIndex > -1 ? enemy.activeSquads[weakestIndex] : enemy.activeSquads[0];
             case 'strongest':
-                let maxDamage: number = enemy.activeSquads[0].attack();
-                let strongestIndex: number | null = null;
+                let maxDamage: number | null = enemy.activeSquads[0].attack();
+                let strongestIndex: number = -1;
                 for (let index in enemy.activeSquads) {
                     if (enemy.activeSquads[index].attack() > maxDamage) {
                         maxDamage = enemy.activeSquads[index].attack();
                         strongestIndex = +index;
                     }
                 }
-                return enemy.squads[strongestIndex];
+                return strongestIndex > -1 ? enemy.activeSquads[strongestIndex] : enemy.activeSquads[0];
             default:
                 throw new Error('Unknown strategy type');
         }

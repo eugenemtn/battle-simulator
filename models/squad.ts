@@ -7,7 +7,7 @@ import Vehicle from './vehicle';
 class Squad {
     units: (Soldier|Vehicle)[];
 
-    constructor(squadSize: number | null) {
+    constructor(squadSize: number) {
         if (squadSize > 10 || squadSize < 5) {
             throw new Error(`${squadSize} is less than 5 or is greater than 10`);
         }
@@ -63,7 +63,7 @@ class Squad {
         }
     }
 
-    attack(): number | null {
+    attack(): number {
         let sum: number = 0;
         for (let unit of this.activeUnits) {
             let damage = unit.attack();

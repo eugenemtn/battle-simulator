@@ -29,22 +29,22 @@ class Vehicle extends Soldier {
         return result;
     }
 
-    get isActive() {
+    get isActive(): boolean {
         const operatorsAlive = this.crew.findIndex(member => member.isActive) > -1;
         return this.health > 0 && operatorsAlive;
     }
 
     calculateDamage(): number {
-        const reducer = (acc, cV) => acc + cV.experience;
+        const reducer = (acc: number, cV: Soldier): number => acc + cV.experience;
         return 0.1 + (this.crew.reduce(reducer, 0) / 100);
     }
 
-    get probability() {
-        const experiences = this.crew.map(member => member.experience);
+    get probability(): number {
+        const experiences = this.crew.map((member: Soldier): number => member.experience);
         return 0.5 * (1 + this.health / 100) * s.geometricMean(experiences);
     }
 
-    takeDamage(points: number) {
+    takeDamage(points: number): void {
         this.health -= 0.6 * points;
         const crewAlive = this.crew.filter(member => member.isActive);
         const doubleDamageTakerIndex = s.random(0, crewAlive.length - 1);
