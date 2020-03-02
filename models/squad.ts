@@ -51,6 +51,7 @@ class Squad {
         const sequence = this.activeUnits.map(unit => unit.probability);
         return s.geometricMean(sequence);
     }
+
     takeDamage(points: number): void | undefined {
         if (!this.activeUnits.length) {
             throw new Error('Can\'t handle more damage. No active units');
