@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "lib": [
+            "es5",
+            "es6",
+            "dom",
+        ],
+        "outDir": "./dist",
+        "allowJs": true,
+        "downlevelIteration": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "preserveConstEnums": true,
+        "removeComments": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "sourceMap": true,
+    },
+    "include": [
+        "index.ts"
+    ]
+}
