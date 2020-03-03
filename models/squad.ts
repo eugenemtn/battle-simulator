@@ -5,7 +5,7 @@ import Soldier from './soldier';
 import Vehicle from './vehicle';
 
 class Squad {
-    units: (Soldier|Vehicle)[];
+    units: (Soldier|Vehicle)[] = [];
 
     constructor(squadSize: number) {
         if (squadSize > 10 || squadSize < 5) {
@@ -49,7 +49,21 @@ class Squad {
 
     get probability(): number {
         const sequence = this.activeUnits.map(unit => unit.probability);
+        console.log("squad probability: ", sequence);
+        console.log("unit types", this.activeUnits.map(unit => unit.hasOwnProperty('crew') ? "Vehicle" : "Soldier"));
+        console.log("geometric mean", s.geometricMean(sequence));
         return s.geometricMean(sequence);
+    }
+
+    get squadHealth(): number {
+        const reducer = (acc: number, value: (Soldier|Vehicle)) => {
+            if ((value as Vehicle).vehicleHealth) {
+                return acc + (value as Vehicle).vehicleHealth;
+            } else {
+                return acc + (value as Soldier).health;
+            }
+        }
+        return this.activeUnits.reduce(reducer, 0);
     }
 
     takeDamage(points: number): void | undefined {
@@ -68,6 +82,7 @@ class Squad {
         for (let unit of this.activeUnits) {
             let damage = unit.attack();
             sum += damage ? damage : 0;
+            unit.ascend();
         }
         return sum;
     }

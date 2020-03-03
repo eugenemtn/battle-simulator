@@ -21,7 +21,7 @@ class Soldier extends Unit {
         this.experience += 1;
     }
     calculateDamage(): number {
-        return 0.05 + this.experience / 100;
+        return 1.05 + this.experience / 100;
     }
     get probability() {
         const random: number = h.random(50 + this.experience, 100);

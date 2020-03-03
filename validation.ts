@@ -8,7 +8,7 @@ const validation = {
             sequence.push(member);
         }
 
-        return value in sequence;
+        return sequence.indexOf(value) > -1;
     }
 }
 

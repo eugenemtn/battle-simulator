@@ -4,6 +4,9 @@ function random(min: number, max: number): number {
 }
 
 function geometricMean(sequence: number[]): number {
+    if (!sequence.length) {
+        return 0;
+    }
     const reduced = sequence.reduce((acc, value) => acc * value);
     return Math.pow(reduced, 1 / sequence.length);
 }

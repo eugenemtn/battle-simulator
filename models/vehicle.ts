@@ -34,14 +34,18 @@ class Vehicle extends Soldier {
         return this.health > 0 && operatorsAlive;
     }
 
+    get activeCrew(): Soldier[] {
+        return this.crew.filter((member: Soldier): boolean => member.isActive);
+    }
+
     calculateDamage(): number {
-        const reducer = (acc: number, cV: Soldier): number => acc + cV.experience;
+        const reducer = (acc: number, soldier: Soldier): number => acc + soldier.experience;
         return 0.1 + (this.crew.reduce(reducer, 0) / 100);
     }
 
     get probability(): number {
-        const experiences = this.crew.map((member: Soldier): number => member.experience);
-        return 0.5 * (1 + this.health / 100) * s.geometricMean(experiences);
+        const probabilities: number[] = this.activeCrew.map((member: Soldier): number => member.probability);
+        return 0.5 * (1 + this.vehicleHealth / 100) * s.geometricMean(probabilities);
     }
 
     takeDamage(points: number): void {
@@ -55,6 +59,12 @@ class Vehicle extends Soldier {
             }
             const newHealth = crewAlive[index].health - 0.1 * points
             crewAlive[index].health = newHealth < 0 ? 0 : newHealth;
+        }
+    }
+
+    ascend(): void {
+        for (let operator of this.crew) {
+            operator.ascend();
         }
     }
 }

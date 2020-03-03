@@ -5,7 +5,7 @@ export default {
         'weakest',
         'strongest',
     ],
-    squads: 5,
-    units: 7,
-    attackPeriod: 200,
+    squads: 2,
+    units: 2,
+    attackPeriod: 100,
 }
