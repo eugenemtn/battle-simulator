@@ -29,14 +29,14 @@ class Squad {
     }
 
     private _createVehicle(): Vehicle {
-        let units: (Soldier|Vehicle)[] = [];
+        let crew: (Soldier)[] = [];
         const crewSize = s.random(1, 3);
 
         for (let operator of new g(1, crewSize).iterator) {
-            units.push(this._createSoldier());
+            crew.push(this._createSoldier());
         }
             
-        return new Vehicle(s.random(1000, 2000), crewSize, units);
+        return new Vehicle(s.random(1000, 2000), crewSize, crew);
     }
 
     get isActive(): boolean {
