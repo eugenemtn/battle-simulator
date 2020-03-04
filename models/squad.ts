@@ -49,9 +49,6 @@ class Squad {
 
     get probability(): number {
         const sequence = this.activeUnits.map(unit => unit.probability);
-        console.log("squad probability: ", sequence);
-        console.log("unit types", this.activeUnits.map(unit => unit.hasOwnProperty('crew') ? "Vehicle" : "Soldier"));
-        console.log("geometric mean", s.geometricMean(sequence));
         return s.geometricMean(sequence);
     }
 
