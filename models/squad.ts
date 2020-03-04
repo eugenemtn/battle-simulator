@@ -56,14 +56,14 @@ class Squad {
     }
 
     get squadHealth(): number {
-        const reducer = (acc: number, value: (Soldier|Vehicle)) => {
+        const reducer = (acc: number, value: (Soldier | Vehicle)) => {
             if (isVehicle(value)) {
                 return acc + value.vehicleHealth;
             } else {
                 return acc + value.health;
             }
         }
-        function isVehicle(unit: Vehicle | Soldier): unit is Vehicle {
+        function isVehicle(unit: Soldier | Vehicle): unit is Vehicle {
             return (unit as Vehicle).vehicleHealth !== undefined;
         }
         return this.activeUnits.reduce(reducer, 0);
