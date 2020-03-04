@@ -15,7 +15,7 @@
         "preserveConstEnums": true,
         "removeComments": true,
         "strictNullChecks": true,
-        "strictFunctionTypes": true,
+        "strictFunctionTypes": true, 
     },
     "include": [
         "index.ts"

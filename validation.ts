@@ -1,7 +1,7 @@
 import g from './generator';
 
 const validation = {
-    inRange(value: number, start: number, end: number) {
+    inRange(value: number, start: number, end: number): boolean {
         let sequence = [];
 
         for (let member of new g(start, end).iterator) {
