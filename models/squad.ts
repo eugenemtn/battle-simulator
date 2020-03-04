@@ -59,9 +59,8 @@ class Squad {
         const reducer = (acc: number, value: (Soldier | Vehicle)) => {
             if (isVehicle(value)) {
                 return acc + value.vehicleHealth;
-            } else {
-                return acc + value.health;
             }
+            return acc + value.health;
         }
         function isVehicle(unit: Soldier | Vehicle): unit is Vehicle {
             return (unit as Vehicle).vehicleHealth !== undefined;
