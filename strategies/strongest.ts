@@ -4,11 +4,11 @@ import Squad from '../models/squad';
 
 class StrongestStrategy implements StrategyInterface {
     getTargetSquad(enemy: Army): Squad {
-        let maxDamage: number | null = enemy.activeSquads[0].attack();
+        let maxDamage: number | null = enemy.activeSquads[0].calculateDamage();
         let strongestIndex: number = -1;
         for (let index in enemy.activeSquads) {
-            if (enemy.activeSquads[index].attack() > maxDamage) {
-                maxDamage = enemy.activeSquads[index].attack();
+            if (enemy.activeSquads[index].calculateDamage() > maxDamage) {
+                maxDamage = enemy.activeSquads[index].calculateDamage();
                 strongestIndex = +index;
             }
         }

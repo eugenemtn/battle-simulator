@@ -7,10 +7,12 @@ import WeakestStrategy from './weakest';
 import StrongestStrategy from './strongest';
 
 class AbstractStrategy {
+    type: string;
     private _strategy: StrategyInterface;
 
     constructor(strategy: string) {
         this.setStrategy(strategy);
+        this.type = strategy;
     }
 
     resolveTarget(enemy: Army): Squad {
@@ -31,6 +33,7 @@ class AbstractStrategy {
             default:
                 throw new Error('Unknown strategy type');
         }
+        this.type = strategy;
     }
 }
 

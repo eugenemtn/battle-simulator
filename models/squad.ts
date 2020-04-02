@@ -76,14 +76,19 @@ class Squad {
         }
     }
 
-    attack(): number {
+    calculateDamage(): number {
         let sum: number = 0;
         for (let unit of this.activeUnits) {
-            let damage = unit.attack();
+            let damage = unit.calculateDamage();
             sum += damage ? damage : 0;
-            unit.ascend();
         }
         return sum;
+    }
+    
+    ascend(): void {
+        for (let unit of this.activeUnits) {
+            unit.ascend();
+        }
     }
 }
 

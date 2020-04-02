@@ -36,18 +36,15 @@ class Army {
         if (!enemySquad) {
             return;
         }
-        // console.log('ATTACK!!');
         for (let squad of this.activeSquads) {
-            // console.log('PROBABILITIES: ', squad.probability, enemySquad.probability);
-            // console.log('ATTACKER ACTIVE: ', squad.isActive);
-            // console.log('DEFENDER ACTIVE: ', enemySquad.isActive);
             if (squad.probability >= enemySquad.probability && squad.isActive && enemySquad.isActive) {
-                enemySquad.takeDamage(squad.attack());
+                enemySquad.takeDamage(squad.calculateDamage());
+                squad.ascend();
             }
         }
     }
 
-    getTargetSquad(enemy: Army): Squad {
+    getTargetSquad(enemy: Army): Squad | undefined {
         if (!enemy.activeSquads.length) {
             return;
         }

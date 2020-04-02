@@ -40,7 +40,7 @@ class Battlefield {
                 if (this.oneSurvivor) {
                     clearInterval(this.battle);
                     console.log(`We\'ve got a winner!!!
-                    The army with index ${j}, and it's strategy was ${activeArmies[j].strategy}`)
+                    The army with index ${j}, and it's strategy was ${activeArmies[j].strategy.type}`)
                     return false;
                 }
             }
