@@ -3,8 +3,9 @@ import Army from './army';
 
 class Battlefield {
     field: Army[] = [];
-    private battle: number;
     strategies: string[];
+    private battle: number;
+
     constructor(armiesCount: number, armySize: number, squadSize: number, strategies: string[]) {
         this.strategies = strategies;
         // Initialize battlefield
